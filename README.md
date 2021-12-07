@@ -2,6 +2,7 @@
 My solutions (all in the form of Python one-liners) for the Advent of Code 2021 Challenges
 
 Note: These have NOT been optimized (with a few exceptions). The goal was to solve every challenge in one line, without investing an absurd amount of time.
+
 Note on the Note: These are meant to be run from the command-line. (Hence the 'python -c') String formatting and quotation-mark-escaping is consistent with PowerShell syntax; may need to be adjusted for other environments
 
 ## Day 1
