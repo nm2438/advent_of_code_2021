@@ -2,25 +2,26 @@
 My solutions (all in the form of Python one-liners) for the Advent of Code 2021 Challenges
 
 Note: These have NOT been optimized (with a few exceptions). The goal was to solve every challenge in one line, without investing an absurd amount of time.
+Note on the Note: These are meant to be run from the command-line. (Hence the 'python -c') String formatting and quotation-mark-escaping is consistent with PowerShell syntax; may need to be adjusted for other environments
 
 ## Day 1
 
 ###	Part 1
 
 ```
-python -c 'print(sum(map(lambda x, y: int(y > x), depths:=[int(depth) for depth in open(\"input.txt\").readlines()],depths[1:])))'
+python -c "print(sum(map(lambda x, y: int(y > x), depths:=[int(depth) for depth in open('input.txt').readlines()],depths[1:])))'
 ```
 
 ###	Part 2
 
 ```
-python -c 'print(len([1 for depths in [[*map(int,open(\"input.txt\"))]] for i in range(1,len(depths)) if sum(depths[i:i+3]) > sum(depths[i-1:i+2])]))'
+python -c "print(len([1 for depths in [[*map(int,open('input.txt'))]] for i in range(1,len(depths)) if sum(depths[i:i+3]) > sum(depths[i-1:i+2])]))"
 ```	
   
 ### Combo
 
 ```
-python -c 'for x in (1,3): print(len([1 for depths in [[*map(int,open(\"input.txt\"))]] for i in range(1,len(depths)) if sum(depths[i:i+x]) > sum(depths[i-1:i+(x-1)])]))'
+python -c "for x in (1,3): print(len([1 for depths in [[*map(int,open('input.txt'))]] for i in range(1,len(depths)) if sum(depths[i:i+x]) > sum(depths[i-1:i+(x-1)])]))"
 ```
 
 ## Day 2
@@ -28,13 +29,13 @@ python -c 'for x in (1,3): print(len([1 for depths in [[*map(int,open(\"input.tx
 ###	Part 1
 
 ```    
-python -c '[print(sum((f:=lambda char:[int(val) for key,val in cmdLst if key[0]==char])("f"))*(sum(f("d"))-sum(f("u")))) for cmdLst in [[line.split(" ") for line in open("input.txt")]]]'
+python -c "[print(sum((f:=lambda char:[int(val) for key,val in cmdLst if key[0]==char])('f'))*(sum(f('d'))-sum(f('u')))) for cmdLst in [[line.split(' ') for line in open('input.txt')]]]"
 ```
    
 ###	Part 2
 
 ```
-python -c '[print((f:=lambda char,i:sum([int(val) for key,val in cmdLst[:i] if key[0]==char]))("f",len(cmdLst)) * sum([int(cmdLst[i][1])*(f("d",i)-f("u",i)) for i in range(len(cmdLst)) if cmdLst[i][0][0]=="f"])) for cmdLst in [[line.split(" ") for line in open("input.txt")]]]'
+python -c "[print((f:=lambda char,i:sum([int(val) for key,val in cmdLst[:i] if key[0]==char]))('f',len(cmdLst)) * sum([int(cmdLst[i][1])*(f('d',i)-f('u',i)) for i in range(len(cmdLst)) if cmdLst[i][0][0]=='f'])) for cmdLst in [[line.split(' ') for line in open('input.txt')]]]"
 ```
    
 ## Day 3 
@@ -42,7 +43,7 @@ python -c '[print((f:=lambda char,i:sum([int(val) for key,val in cmdLst[:i] if k
 ###	Part 1
    
 ```
-python -c '[print((func:=lambda f:int("".join([str (int(f((idxSums:=[sum([int(bStrLst[idx]) for bStrLst in bStrLsts if idx in bStrLst]) for idx in range(1+maxIdx)])[i]>(len(bStrLsts)/2)))) for i in range(1+maxIdx)]),2))(lambda x:x)*func(lambda x:not(x))) for bStrLsts in [[{i:b for i,b in [*enumerate(bstr.strip())]} for bstr in open("input.txt")]] for maxIdx in [max([i for bStrLst in bStrLsts for i in bStrLst.keys()])]]
+python -c "[print((func:=lambda f:int(''.join([str (int(f((idxSums:=[sum([int(bStrLst[idx]) for bStrLst in bStrLsts if idx in bStrLst]) for idx in range(1+maxIdx)])[i]>(len(bStrLsts)/2)))) for i in range(1+maxIdx)]),2))(lambda x:x)*func(lambda x:not(x))) for bStrLsts in [[{i:b for i,b in [*enumerate(bstr.strip())]} for bstr in open('input.txt')]] for maxIdx in [max([i for bStrLst in bStrLsts for i in bStrLst.keys()])]]"
 ```
    
 ###	Part 2
@@ -56,7 +57,7 @@ python -c "[print((recursiveLambda:=lambda lstOfBstrs, idx, boolLambda: int(''.j
 ###	Part 1
 
 ```
-python3 -c '[print((rfunc:=lambda idx:sum([num for num in winner[0] if num not in seq[:idx]])*seq[idx-1] if len((winner:=[card for card in cards if any([all([num in seq[:idx] for num in group]) for group in [[card[i] for i in idxset] for idxset in bingoIndices]])]))>0 else rfunc(idx+1))(5)) for contents in [open("input.txt").read().split("\n\n")] for seq in [[*map(int,contents[0].split(","))]] for cards in [[[*map(int,card.split())] for card in contents[1:]]] for bingoIndices in [[[*range(i,i+5)] for i in range(0,21,5)]+[[*range(i,i+21,5)] for i in range(0,5)]]]'
+python3 -c "[print((rfunc:=lambda idx:sum([num for num in winner[0] if num not in seq[:idx]])*seq[idx-1] if len((winner:=[card for card in cards if any([all([num in seq[:idx] for num in group]) for group in [[card[i] for i in idxset] for idxset in bingoIndices]])]))>0 else rfunc(idx+1))(5)) for contents in [open('input.txt').read().split('\n\n')] for seq in [[*map(int,contents[0].split(','))]] for cards in [[[*map(int,card.split())] for card in contents[1:]]] for bingoIndices in [[[*range(i,i+5)] for i in range(0,21,5)]+[[*range(i,i+21,5)] for i in range(0,5)]]]"
 ```
       
 ###	Part 2
