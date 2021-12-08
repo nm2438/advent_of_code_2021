@@ -94,3 +94,17 @@ python -c "print((f:=lambda fishcounts,daynum:sum(newcounts.values()) if ((newco
 ```
 python -c "print((f:=lambda fishcounts,daynum:sum(newcounts.values()) if ((newcounts:={num:(fishcounts[num+1] if num<8 else 0)+(fishcounts[0] if num in (6,8) else 0) for num in range(0,9)}) and daynum==1) else f(newcounts,daynum-1))({num:(initFish:=[int(num) for num in open('input.txt').read().split(',')]).count(num) for num in range(0,9)},256))"
 ```
+
+## Day 7
+
+### Part 1
+
+```
+python -c "print(sum(map(lambda x:abs(x-l[len(l)//2]),l:=sorted([*map(int,open('input.txt').read().split(','))]))))"
+```
+
+### Part 2
+
+```
+python -c "print(min([sum(map(lambda x:(n:=abs(x-int(sum(l)/len(l))+passedval))*(n+1)//2,(l:=[*map(int,open('input.txt').read().split(','))]))) for passedval in (0,1)]))"
+```
