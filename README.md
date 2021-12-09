@@ -108,3 +108,17 @@ python -c "print(sum(map(lambda x:abs(x-l[len(l)//2]),l:=sorted([*map(int,open('
 ```
 python -c "print(min([sum(map(lambda x:(n:=abs(x-int(sum(l)/len(l))+passedval))*(n+1)//2,(l:=[*map(int,open('input.txt').read().split(','))]))) for passedval in (0,1)]))"
 ```
+
+## Day 8
+
+### Part 1
+
+```
+python -c "print(len([digit for output in [line.split('|')[-1].split() for line in open('input.txt').readlines()] for digit in output if len(digit) in (2,4,3,7)]))"
+```
+
+### Part 2
+
+```
+python -c "print(sum(int(''.join([{42:'0',17:'1',34:'2',39:'3',30:'4',37:'5',41:'6',25:'7',49:'8',45:'9'}[sum([entry[0].count(l) for l in digit])] for digit in entry[1].split()])) for entry in [line.split('|') for line in open('input.txt').readlines()]))"
+```
