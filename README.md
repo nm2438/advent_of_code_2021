@@ -122,3 +122,17 @@ python -c "print(len([digit for output in [line.split('|')[-1].split() for line 
 ```
 python -c "print(sum(int(''.join([{42:'0',17:'1',34:'2',39:'3',30:'4',37:'5',41:'6',25:'7',49:'8',45:'9'}[sum([entry[0].count(l) for l in digit])] for digit in entry[1].split()])) for entry in [line.split('|') for line in open('input.txt').readlines()]))"
 ```
+
+## Day 9
+
+### Part 1
+
+```
+python -c "print(sum(low:=(lambda hmap:[hmap[x][y] for x in range(len(hmap)) for y in range(len(hmap[x])) if all([hmap[x][y]<hmap[i][j] for i,j in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)] if i in range(0,len(hmap)) and j in range(0,len(hmap[x]))])])([[*map(int,line.strip())] for line in open('input.txt').readlines()]))+len(low))"
+```
+
+### Part 2
+
+```
+python -c "print(eval('*'.join([*map(lambda basin:str(len(basin)),sorted((lambda hmap:[(trace:=lambda oldpts,currentpts:set(oldpts+currentpts) if len(newpts:=[(c,d) for a,b in currentpts for c,d in [(a-1,b),(a+1,b),(a,b-1),(a,b+1)] if c in range(0,len(hmap)) and d in range(0,len(hmap[a])) if hmap[c][d] in range(hmap[a][b]+1,9)])==0 else trace(oldpts+currentpts,newpts))([],[(x,y)]) for x in range(len(hmap)) for y in range(len(hmap[x])) if all([hmap[x][y]<hmap[i][j] for i,j in [(x-1,y),(x+1,y),(x,y-1),(x,y+1)] if i in range(0,len(hmap)) and j in range(0,len(hmap[x]))])])([[*map(int,line.strip())] for line in open('input.txt').readlines()]), key=lambda val:len(val))[-3:])])))"
+```
